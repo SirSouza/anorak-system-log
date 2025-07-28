@@ -9,7 +9,7 @@
   background: repeating-linear-gradient(
     to bottom,
     #000000,
-    #000000 2px,
+    #000000 1px,
     #001100 3px,
     #000000 4px
   );
@@ -77,15 +77,16 @@
   flex-direction: column;
   border: 1px solid #008000;
   padding: 10px;
-  margin-right: 20px;  border: 5px double #000000;
+  margin-right: 20px;
+  border: 5px double #000000;
 }
 .menu .menu-links {
   display: flex;
   flex-direction: column;
 }
-.menu-links  a::before {
-  content:'>_ ';
-  color: #00FF00;
+.menu-links a::before {
+  content: ">_ ";
+  color: #00ff00;
 }
 .menu a {
   text-decoration: none;
@@ -96,21 +97,19 @@
   margin-bottom: 10px;
   padding: 10px;
   border: 1px solid transparent;
-
 }
-.menu-links  a::after {
-  content:'/';
-  color: #00FF00;
+.menu a::after {
+  content: "/";
+  color: #00ff00;
 }
-.menu-links  a:hover {
-  border: 1px solid #00FF00;
-  color: #00FF00;
+.menu a:hover {
+  color: #00ff00;
 }
 
 /* logo end */
 
 .day-logs {
-  width: calc( 100% - 80px);
+  width: calc(100% - 80px);
   display: flex;
   border: 2px solid #008000;
   padding: 20px;
@@ -152,16 +151,19 @@
   margin-bottom: 20px;
 }
 .entry-content {
-  padding: 15px;
   width: 100%;
   margin: auto;
 }
-
+.entry-content p {
+  margin-bottom: 20px;
+}
 /* entries/section end */
 
 /* entry-side/aside start */
 .entry-side--right {
   flex: 1;
+  display: flex;
+  flex-direction: column;
   border: 2px solid #008000;
   padding: 20px;
 }
@@ -171,23 +173,30 @@
 .log-links li {
   list-style: none;
   margin-left: 20px;
+  display: flex;
+  flex-direction: column;
 }
 .log-links a::before {
-  content: '▶  ';
-  color: #00FF00
+  content: ">_ ";
+  color: #00ff00;
 }
 .log-links a {
   text-decoration: none;
   color: #00ff00;
-  font-size: 12px;
+  font-size: 15px;
   padding: 5px;
 }
 .log-links a:hover {
   background-color: #00ff00;
   color: black;
 }
-.log-links a.active {
+.log-links a:hover::before {
   background-color: #00ff00;
+  color: black;
+}
+
+.log-links a.active {
+  background-color: #008000;
   color: black;
 }
 /* entry-side/aside end */
@@ -199,13 +208,11 @@
 /* footer start */
 .footer-terminal {
   margin: 40px;
-  width: calc( 100% - 80px);
+  width: calc(100% - 80px);
   border: 1px solid #008000;
   padding: 20px;
 }
-.copyright {
-  text-align: center;
-}
+
 /* footer end */
 
 /* media query start */
@@ -214,67 +221,64 @@
     font-size: 30px;
   }
   .menu {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  border: 1px solid #008000;
-  padding: 10px;
-  margin-right: 20px;
-  margin-bottom: 20px;
-}
-.menu .menu-links {
-  flex-direction: row;
-  flex-wrap: wrap;
-  width: 100%;
-
-}
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border: 1px solid #008000;
+    padding: 10px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+  }
+  .menu .menu-links {
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+  }
   .menu-links a:hover {
-  color: #00FF00;
-  border: 1px solid transparent;
+    color: #00ff00;
+    border: 1px solid transparent;
+  }
+  .day-logs {
+    display: flex;
+    flex-direction: column;
+  }
+  .entries {
+    width: 100%;
+    margin-bottom: 20px;
+  }
 }
-.day-logs {
-  display: flex;
-  flex-direction: column;
-}
-.entries{
-  width: 100%;
-  margin-bottom: 20px;
-}
-}
-
 
 @media (max-width: 450px) {
   .header-terminal h1 {
-  font-size: 20px;
-}
+    font-size: 20px;
+  }
   .logo-text {
     font-size: 20px;
   }
   .menu {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  border: 1px solid #008000;
-  padding: 10px;
-  margin-right: 20px;
-  margin-bottom: 20px;
-}
-.menu .menu-links {
-  flex-direction: row;
-  flex-wrap: wrap;
-  width: 100%;
-
-}
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border: 1px solid #008000;
+    padding: 10px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+  }
+  .menu .menu-links {
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+  }
   .menu-links a:hover {
-  color: #00FF00;
-  border: 1px solid transparent;
-}
-.day-logs {
-  display: flex;
-  flex-direction: column;
-}
-.entries{
-  width: 100%;
-  margin-bottom: 20px;
-}
+    color: #00ff00;
+    border: 1px solid transparent;
+  }
+  .day-logs {
+    display: flex;
+    flex-direction: column;
+  }
+  .entries {
+    width: 100%;
+    margin-bottom: 20px;
+  }
 }
