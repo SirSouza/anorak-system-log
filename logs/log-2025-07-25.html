@@ -12,6 +12,7 @@
     <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
 
     <link rel="stylesheet" href="../assets/style.css" />
+    <script type="text/javascript" src="../assets/lightmode.js" defer></script>
     <title>Anorak System Log - DevLog Pessoal</title>
   </head>
   <body class="body-terminal">
@@ -31,13 +32,45 @@
             <p class="prompt">
               anorak@journal:~$ ls /home/anorak<span class="blinker">_</span>
             </p>
-            <a href="" title="meus projetos">Github</a>
-            <a href="" title="me siga no pinterest">pinterest</a>
-            <a href="" title="se junte ao meu discord">Discord</a>
-            <a href="" title="minhas playlists">Spotify</a>
-            <a href="" title="eu quase não uso">Twitter</a>
-            <a href="" title="as vezes eu posto alguma coisa">Youtube</a>
-            <a href="" title="Se quiser me conhecer um pouco melhor">Sobre</a>
+            <nav class="menu-links">
+              <a
+                href="https://github.com/SirSouza"
+                title="meus projetos"
+                target="_blank"
+                >- Github</a
+              >
+              <a
+                href="https://steamcommunity.com/id/retroboyofc/"
+                title="me siga na steam"
+                target="_blank"
+                >- Steam</a
+              >
+              <a
+                href="https://discord.gg/xzXcZBFqSd"
+                title="se junte ao meu discord"
+                target="_blank"
+                >- Discord</a
+              >
+              <a
+                href="https://open.spotify.com/user/anorakdmgs?si=c091e2bfab3c48e3"
+                title="minhas playlists"
+                target="_blank"
+                >- Spotify</a
+              >
+              <a href="#" title="eu quase não uso" target="_blank">- Twitter</a>
+              <a
+                href="https://www.youtube.com/@HarukiMedia"
+                title="as vezes eu posto alguma coisa"
+                target="_blank"
+                >- Youtube</a
+              >
+              <a
+                href="#"
+                title="Se quiser me conhecer um pouco melhor (WIP)"
+                target="_blank"
+                >- Sobre</a
+              >
+            </nav>
           </div>
           <!-- Entries -->
           <section class="entries">
@@ -84,9 +117,12 @@
             </p>
             <ul class="log-links">
               <li>
-                <a href="log-2025-07-25.html" class="active">2025-07-25.log</a>
-                <a href="log-2025-07-28.html">2025-07-28.log</a>
+                <a href="log-2025-07-25.html" class="active"
+                  >>_ 2025-07-25.log</a
+                >
               </li>
+              <li><a href="log-2025-07-28.html">>_ 2025-07-28.log</a></li>
+              <li><a href="log-2025-07-31.html">>_ 2025-07-31.log</a></li>
             </ul>
           </aside>
         </div>
@@ -95,9 +131,12 @@
         <div class="prompt">
           anorak@journal:~$ exit<span class="blinker">_</span>
         </div>
-        <p class="copyright">
-          &copy; 2025 Anorak System Log. All rights reserved.
-        </p>
+        <div class="footer-content">
+          <p class="copyright">
+            &copy; 2025 Anorak System Log. All rights reserved.
+          </p>
+          <button id="theme-switch">MUDAR TEMA</button>
+        </div>
       </footer>
     </div>
   </body>
