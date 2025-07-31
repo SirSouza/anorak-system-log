@@ -13,6 +13,19 @@
 ### Mobile
 ![Preview Mobile](assets/mobile-preview.png)
 
+
+## light preview
+
+### Desktop
+![Preview Desktop](assets/light-preview.png)
+
+### iPad
+![Preview iPad](assets/light-ipad-preview.png)
+
+### Mobile
+![Preview Mobile](assets/light-mobile-preview.png)
+
+
 ## 🚀 Acesse o site
 🔗 [sirsouza.github.io/anorak-system-log](https://sirsouza.github.io/anorak-system-log)
 
