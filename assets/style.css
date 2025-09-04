@@ -7,18 +7,18 @@
     #001100 3px,
     #000000 4px
   );
-  --text-color-base: #00ff00;
-  --logo-bg: #00ff00;
+  --text-color-base: #009000;
+  --logo-bg: #009000;
   --logo-text: #000000;
   --logo-border: #000000;
-  --border-color-base: #00ff00;
-  --prompt-bg-base: #00ff00;
+  --border-color-base: #009000;
+  --prompt-bg-base: #009000;
   --prompt-text-base: #000000;
   --hover-color-base: #000000;
-  --hover-bg-base: #00ff00;
-  --active-bg: #00ff00;
+  --hover-bg-base: #009000;
+  --active-bg: #009000;
   --active-text: #000000;
-  --button-text: #00ff00;
+  --button-text: #009000;
   --button-bg: #000000;
 }
 .lightmode {
