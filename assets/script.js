@@ -23,7 +23,6 @@ const entries = [
 	"2025-08-16",
 	"2025-08-26",
 	"2025-12-03",
-	"skldnklsds",
 ];
 
 /* Gera links automaticamente  */
