@@ -24,6 +24,8 @@
 	--button-text: #00ff00;
 	--button-hover-bg: #00ff00;
 	--button-hover-text: #000;
+	--scrolbar-pointer: #00ff00;
+	--scrolbar-bg: #000;
 }
 
 .lightmode {
@@ -56,6 +58,8 @@
 	--button-text: #2d2d2d;
 	--button-hover-bg: #828282;
 	--button-hover-text: #000000;
+	--scrolbar-pointer: #2d2d2d;
+	--scrolbar-bg: #828282;
 }
 
 * {
@@ -323,6 +327,15 @@ h1 {
 /* Lista de logs */
 .log-links {
 	list-style: none;
+	max-height: 300px;
+	overflow: auto;
+	scrollbar-width: thin;
+	scrollbar-color: transparent transparent;
+	scroll-behavior: smooth;
+	transition: scrollbar-color 0.3s ease;
+}
+.log-links:hover {
+	scrollbar-color: var(--scrolbar-pointer) var(--scrolbar-bg);
 }
 
 .log-links li {
