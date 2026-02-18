@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 	<head>
 		<meta charset="UTF-8" />
@@ -15,11 +15,11 @@
 	<body>
 		<!-- Efeito CRT -->
 		<div class="crt-overlay"></div>
+		<!--  -->
 
 		<!-- Boot Screen -->
 		<div id="boot-screen">
 			<div class="bootScreenContainer">
-				
 				<div class="boot-line" style="animation-delay: 0s">
 					[OK] Loading BIOS...
 				</div>
@@ -38,10 +38,17 @@
 				<div class="boot-line" style="animation-delay: 1.5s">
 					[OK] System ready.
 				</div>
-				<div class="boot-line" style="animation-delay: 1.8s">
-					<br />Welcome to Anorak's System Log<span class="blinker">_</span>
+				<div class="boot-line welcome" style="animation-delay: 1.8s">
+					<br />
+					Welcome to Anorak's System Log
+					<span class="blinker">_</span>
 				</div>
 			</div>
+			<!-- LoadingBar -->
+			<div id="loadingBarContainer">
+				<div id="progressFill"></div>
+			</div>
+			<div id="countText">0%</div>
 		</div>
 
 		<div class="container">
@@ -63,44 +70,50 @@
 				<!-- Menu lateral esquerdo -->
 				<aside class="sidebar">
 					<p class="prompt">
-						anorak@journal:~$ ls /home/anorak<span class="blinker">_</span>
+						anorak@journal:~$ ls /home/anorak
+						<span class="blinker">_</span>
 					</p>
 					<nav>
-						<a 
-						href="https://github.com/SirSouza" 
-						target="_blank" 
-						class="glitch">
-						GITHUB</a
+						<a
+							href="https://github.com/SirSouza"
+							target="_blank"
+							class="glitch"
 						>
-							
+							GITHUB
+						</a>
+
 						<a
 							href="https://steamcommunity.com/id/anorakofc/"
 							target="_blank"
 							class="glitch"
 						>
-							STEAM</a
+							STEAM
+						</a>
+						<a
+							href="https://discord.gg/xzXcZBFqSd"
+							target="_blank"
+							class="glitch"
 						>
-						<a href="https://discord.gg/xzXcZBFqSd" target="_blank" class="glitch">
-							DISCORD</a
-						>
+							DISCORD
+						</a>
 						<a
 							href="https://open.spotify.com/user/anorakdmgs"
 							target="_blank"
 							class="glitch"
 						>
-							SPOTIFY</a
-						>
+							SPOTIFY
+						</a>
 						<a href="https://x.com/TheMage2k20" target="_blank" class="glitch">
-							TWITTER</a
-						>
+							TWITTER
+						</a>
 						<a
 							href="https://www.youtube.com/@Anorakofc"
 							target="_blank"
 							class="glitch"
 						>
-							YOUTUBE</a
-						>
-						<a href="#" class="glitch"> SOBRE</a>
+							YOUTUBE
+						</a>
+						<a href="#" class="glitch">SOBRE</a>
 					</nav>
 				</aside>
 
@@ -115,32 +128,37 @@
 							<div class="entry-date"><h2 class="glow">[2025-07-24]</h2></div>
 							<div class="entry-content">
 								<p>
-									E aí, eu Sou Anorak, ou pelo menos é assim que assino as paradas por
-									aqui. Resolvi começar esse diário digital. Não sei bem por quê, mas
-									acho que é aquele lance de querer guardar as ideias, os perrengues do
-									dia, os bugs que me fizeram suar frio... e as pequenas vitórias também,
-									claro.
+									E aí, eu Sou Anorak, ou pelo menos é assim que assino as
+									paradas por aqui. Resolvi começar esse diário digital. Não sei
+									bem por quê, mas acho que é aquele lance de querer guardar as
+									ideias, os perrengues do dia, os bugs que me fizeram suar
+									frio... e as pequenas vitórias também, claro.
 								</p>
 								<p>
-									Vai ser tipo meu cantinho pessoal no meio do caos da web. Sem muita
-									regra, sem firula. Só eu escrevendo o que der na telha. Talvez ninguém
-									nunca leia isso. Talvez eu leia e ria de mim mesmo daqui uns anos. Tá
-									valendo.
+									Vai ser tipo meu cantinho pessoal no meio do caos da web. Sem
+									muita regra, sem firula. Só eu escrevendo o que der na telha.
+									Talvez ninguém nunca leia isso. Talvez eu leia e ria de mim
+									mesmo daqui uns anos. Tá valendo.
 								</p>
 								<p>
-									Mas calma aí, <cite>"This aren't the droids you're looking for"</cite>.
-									A <code>home</code> é só o lobby. O que você procura está nos
+									Mas calma aí,
+									<cite>"This aren't the droids you're looking for"</cite>
+									. A
+									<code>home</code>
+									é só o lobby. O que você procura está nos
 									<code>logs</code>
 									— aquela seção ali na direita (ou abaixo, dependendo do seu
 									dispositivo).
 								</p>
 								<p>
-									<strong>Spoiler:</strong> não tem cookies aqui. Só paranoia, reflexões
-									e bugs existenciais.
+									<strong>Spoiler:</strong>
+									não tem cookies aqui. Só paranoia, reflexões e bugs
+									existenciais.
 								</p>
 							</div>
 							<div class="prompt">
-								anorak@journal:~$ <span class="blinker">_</span>
+								anorak@journal:~$
+								<span class="blinker">_</span>
 							</div>
 						</article>
 					</section>
@@ -149,7 +167,8 @@
 				<!-- Lista de logs lateral direita -->
 				<aside class="sidebar">
 					<p class="prompt">
-						anorak@journal:~$ ls /home/anorak/logs<span class="blinker">_</span>
+						anorak@journal:~$ ls /home/anorak/logs
+						<span class="blinker">_</span>
 					</p>
 					<h3>SYSTEM LOGS</h3>
 					<a href="index.html" class="glitch">- HOME</a>
