@@ -147,13 +147,24 @@ body {
 	animation: fadeIn 0.3s forwards;
 	margin: 5px 0;
 }
-
+.welcome {
+	text-transform: uppercase;
+}
 @keyframes fadeIn {
 	to {
 		opacity: 1;
 	}
 }
-
+/* Loading Bar */
+#loadingBarContainer {
+	width: 300px;
+	height: 20px;
+	margin-top: 50px;
+}
+#progressFill {
+	background-color: var(--border-color-base);
+	height: 100%;
+}
 /* Header */
 header {
 	text-align: center;
