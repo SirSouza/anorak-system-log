@@ -1,7 +1,28 @@
 // Boot sequence
 setTimeout(() => {
 	document.getElementById("boot-screen").classList.add("hidden");
-}, 3500);
+}, 3500); 
+
+// LoadingBar
+function progressBar() {
+	const progressFill = document.getElementById("progressFill")
+	const countText = document.getElementById("countText")
+ 
+	let progress = 0
+	let interval = setInterval(loadingBar, 20)
+
+	function loadingBar() {
+		if(progress >= 100) {
+			clearInterval(interval)
+		} else {
+			progress++
+			progressFill.style.width = `${progress}%`
+			countText.innerText = `${progress}%`
+		}
+	}
+}
+progressBar()
+
 
 function dateCopyright() {
 	const footerContent = document.querySelector(".footer-content");
