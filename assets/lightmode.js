@@ -1,19 +1,27 @@
-let lightmode = localStorage.getItem('lightmode')
-const themeSwitch = document.getElementById('theme-switch')
+const THEMES = ["dark", "lightmode", "ambermode"];
+const LABELS = {
+  dark: "MUDAR TEMA",
+  lightmode: "MUDAR TEMA",
+  ambermode: "MUDAR TEMA",
+};
 
-const enableLightmode = () => {
-    document.body.classList.add('lightmode')
-    localStorage.setItem('lightmode', 'active')
+const themeSwitch = document.getElementById("theme-switch");
+
+function applyTheme(theme) {
+  document.body.classList.remove("lightmode", "ambermode");
+  if (theme === "lightmode") document.body.classList.add("lightmode");
+  if (theme === "ambermode") document.body.classList.add("ambermode");
+  localStorage.setItem("theme", theme);
+  themeSwitch.textContent = LABELS[theme];
 }
 
-const disableLightmode = () => {
-    document.body.classList.remove('lightmode')
-    localStorage.setItem('lightmode', null)
+function cycleTheme() {
+  const current = localStorage.getItem("theme") || "dark";
+  const next = THEMES[(THEMES.indexOf(current) + 1) % THEMES.length];
+  applyTheme(next);
 }
 
-if(lightmode === "active") enableLightmode()
+/* Restaura o tema salvo ao carregar */
+applyTheme(localStorage.getItem("theme") || "dark");
 
-themeSwitch.addEventListener("click", () => {
-    lightmode = localStorage.getItem('lightmode')
-    lightmode != "active" ? enableLightmode() : disableLightmode()
-})
+themeSwitch.addEventListener("click", cycleTheme);
