@@ -1,110 +1,110 @@
 // Boot sequence
 setTimeout(() => {
-	document.getElementById("boot-screen").classList.add("hidden");
-}, 3500); 
+  document.getElementById("boot-screen").classList.add("hidden");
+}, 3500);
 
 // LoadingBar
 function progressBar() {
-	const progressFill = document.getElementById("progressFill")
-	const countText = document.getElementById("countText")
- 
-	let progress = 0
-	let interval = setInterval(loadingBar, 20)
+  const progressFill = document.getElementById("progressFill");
+  const countText = document.getElementById("countText");
 
-	function loadingBar() {
-		if(progress >= 100) {
-			clearInterval(interval)
-		} else {
-			progress++
-			progressFill.style.width = `${progress}%`
-			countText.innerText = `${progress}%`
-		}
-	}
+  let progress = 0;
+  let interval = setInterval(loadingBar, 20);
+
+  function loadingBar() {
+    if (progress >= 100) {
+      clearInterval(interval);
+    } else {
+      progress++;
+      progressFill.style.width = `${progress}%`;
+      countText.innerText = `${progress}%`;
+    }
+  }
 }
-progressBar()
-
+progressBar();
 
 function dateCopyright() {
-	const footerContent = document.querySelector(".footer-content");
-	const themeButton = document.querySelector("#theme-switch");
-	const copyright = document.createElement("p");
-	copyright.classList = "glow copy";
-	copyright.innerHTML = ` &copy; ${new Date().getFullYear()} Anorak System Log. All rights reserved.`;
-	footerContent.insertBefore(copyright, themeButton);
+  const footerContent = document.querySelector(".footer-content");
+  const themeButton = document.querySelector("#theme-switch");
+  const copyright = document.createElement("p");
+  copyright.classList = "glow copy";
+  copyright.innerHTML = ` &copy; ${new Date().getFullYear()} Anorak System Log. All rights reserved.`;
+  footerContent.insertBefore(copyright, themeButton);
 }
 dateCopyright();
 
 /* Lista de enfooter-contenttries (novas datas vão aqui)*/
 
 const entries = [
-	"2025-07-25",
-	"2025-07-28",
-	"2025-07-31",
-	"2025-08-06",
-	"2025-08-16",
-	"2025-08-26",
-	"2025-12-03",
-	"2026-01-16",
+  "2025-07-25",
+  "2025-07-28",
+  "2025-07-31",
+  "2025-08-06",
+  "2025-08-16",
+  "2025-08-26",
+  "2025-12-03",
+  "2026-01-16",
+  "2026-05-12",
 ];
 
 /* Gera links automaticamente  */
 function generateLoglinks() {
-	const logLinksList = document.querySelector(".log-links");
+  const logLinksList = document.querySelector(".log-links");
 
-	entries.forEach((date) => {
-		const li = document.createElement("li");
-		const a = document.createElement("a");
+  entries.forEach((date) => {
+    const li = document.createElement("li");
+    const a = document.createElement("a");
 
-		a.href = `#${date}`;
-		a.textContent = `>_ ${date}.log`;
+    a.href = `#${date}`;
+    a.textContent = `>_ ${date}.log`;
 
-		/* onClick load the entry */
-		a.addEventListener("click", (e) => {
-			e.preventDefault();
-			loadEntry(date);
+    /* onClick load the entry */
+    a.addEventListener("click", (e) => {
+      e.preventDefault();
+      loadEntry(date);
 
-			/* remove "active de todos os links" */
+      /* remove "active de todos os links" */
 
-			document.querySelectorAll("log-links a").forEach((link) => {
-				link.classList.remove("active");
-			});
+      document.querySelectorAll("log-links a").forEach((link) => {
+        link.classList.remove("active");
+      });
 
-			/* Adiciona "active" quando clickar */
-			a.classList.add("active");
-		});
+      /* Adiciona "active" quando clickar */
+      a.classList.add("active");
+    });
 
-		li.appendChild(a);
-		logLinksList.appendChild(li);
-	});
+    li.appendChild(a);
+    logLinksList.appendChild(li);
+  });
 }
 
 /* Funçao que carrega conteudo do entry */
 async function loadEntry(date) {
-	const container = document.querySelector(".entries");
+  const container = document.querySelector(".entries");
 
-	try {
-		/* mostra carregando */
+  try {
+    /* mostra carregando */
 
-		container.innerHTML =
-			'<div class="prompt">Carregando...<span class="blinker">_</span></div>';
+    container.innerHTML =
+      '<div class="prompt">Carregando...<span class="blinker">_</span></div>';
 
-		/* Procura pelo html */
-		const response = await fetch(`./logs/log-${date}.html`);
+    /* Procura pelo html */
+    const response = await fetch(`./logs/log-${date}.html`);
 
-		/* Verifica se está OK */
-		if (!response.ok) {
-			throw new Error("Entry não encotrado");
-		}
+    /* Verifica se está OK */
+    if (!response.ok) {
+      throw new Error("Entry não encotrado");
+    }
 
-		/* Pega o HTML */
-		const html = await response.text();
+    /* Pega o HTML */
+    const html = await response.text();
 
-		/* Injeta no container */
-		container.innerHTML = html;
-	} catch (error) {
-		/* mensagem de erro, caso tenha */
+    /* Injeta no container */
+    container.innerHTML = html;
+  } catch (error) {
+    /* mensagem de erro, caso tenha */
 
-		container.innerHTML = `
+    container.innerHTML = `
     <div class="entry">
         <div class="prompt">anorak@journal:~$ cat ${date}.log</div>
         <div class="entry-content">
@@ -113,10 +113,10 @@ async function loadEntry(date) {
         </div>
       </div>
       `;
-		console.error("erro ao carregar entry", error);
-	}
+    console.error("erro ao carregar entry", error);
+  }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-	generateLoglinks();
+  generateLoglinks();
 });
