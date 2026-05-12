@@ -1,192 +1,358 @@
 <!doctype html>
 <html lang="pt-BR">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Anorak's System Log</title>
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-			href="https://fonts.googleapis.com/css2?family=VT323&display=swap"
-			rel="stylesheet"
-		/>
-		<link rel="stylesheet" href="assets/style.css" />
-	</head>
-	<body>
-		<!-- Efeito CRT -->
-		<div class="crt-overlay"></div>
-		<!--  -->
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Anorak's System Log</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=VT323&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="assets/style.css" />
+    </head>
+    <body>
+        <!-- Efeito CRT -->
+        <div class="crt-overlay"></div>
 
-		<!-- Boot Screen -->
-		<div id="boot-screen">
-			<div class="bootScreenContainer">
-				<div class="boot-line" style="animation-delay: 0s">
-					[OK] Loading BIOS...
-				</div>
-				<div class="boot-line" style="animation-delay: 0.3s">
-					[OK] Initializing memory...
-				</div>
-				<div class="boot-line" style="animation-delay: 0.6s">
-					[OK] Loading kernel modules...
-				</div>
-				<div class="boot-line" style="animation-delay: 0.9s">
-					[OK] Mounting /home/anorak...
-				</div>
-				<div class="boot-line" style="animation-delay: 1.2s">
-					[OK] Starting journal.service...
-				</div>
-				<div class="boot-line" style="animation-delay: 1.5s">
-					[OK] System ready.
-				</div>
-				<div class="boot-line welcome" style="animation-delay: 1.8s">
-					<br />
-					Welcome to Anorak's System Log
-					<span class="blinker">_</span>
-				</div>
-			</div>
-			<!-- LoadingBar -->
-			<div id="loadingBarContainer">
-				<div id="progressFill"></div>
-			</div>
-			<div id="countText">0%</div>
-		</div>
+        <!-- Boot Screen -->
+        <div id="boot-screen">
+            <div class="bootScreenContainer">
+                <div class="boot-line" style="animation-delay: 0s">
+                    [OK] Loading BIOS...
+                </div>
+                <div class="boot-line" style="animation-delay: 0.3s">
+                    [OK] Initializing memory...
+                </div>
+                <div class="boot-line" style="animation-delay: 0.6s">
+                    [OK] Loading kernel modules...
+                </div>
+                <div class="boot-line" style="animation-delay: 0.9s">
+                    [OK] Mounting /home/anorak...
+                </div>
+                <div class="boot-line" style="animation-delay: 1.2s">
+                    [OK] Starting journal.service...
+                </div>
+                <div class="boot-line" style="animation-delay: 1.5s">
+                    [OK] System ready.
+                </div>
+                <div class="boot-line welcome" style="animation-delay: 1.8s">
+                    <br />Welcome to Anorak's System Log
+                    <span class="blinker">_</span>
+                </div>
+            </div>
+            <div id="loadingBarContainer">
+                <div id="progressFill"></div>
+            </div>
+            <div id="countText">0%</div>
+        </div>
 
-		<div class="container">
-			<!-- Header -->
-			<header class="glow">
-				<pre class="ascii-logo">
- █████╗ ███╗   ██╗ ██████╗ ██████╗  █████╗ ██╗  ██╗
-██╔══██╗████╗  ██║██╔═══██╗██╔══██╗██╔══██╗██║ ██╔╝
-███████║██╔██╗ ██║██║   ██║██████╔╝███████║█████╔╝ 
-██╔══██║██║╚██╗██║██║   ██║██╔══██╗██╔══██║██╔═██╗ 
-██║  ██║██║ ╚████║╚██████╔╝██║  ██║██║  ██║██║  ██╗
-╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝</pre
-				>
-				<h1>SYSTEM LOG - VERSION 1.0</h1>
-			</header>
+        <!-- Tela principal -->
+        <div class="os-shell" id="os-shell">
+            <!-- Topbar do sistema -->
+            <div class="topbar">
+                <div class="topbar-left">
+                    <span class="status-dot"></span>
+                    ANORAK SYSTEM LOG &mdash; v1.0 |
+                </div>
+                <div class="topbar-center">
+                    <pre class="ascii-logo-small">
+ █████╗ ███╗  ██╗ ██████╗ ██████╗  █████╗ ██╗ ██╗
+██╔══██╗████╗ ██║██╔═══██╗██╔══██╗██╔══██╗██║██╔╝
+███████║██╔██╗██║██║   ██║██████╔╝███████║█████╔╝
+██╔══██║██║╚████║╚██████╔╝██║  ██║██║  ██║██╔═██╗
+╚═╝  ╚═╝╚═╝ ╚═══╝ ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝ ╚═╝</pre
+                    >
+                </div>
+                <div class="topbar-right">
+                    <span>CPU: <b id="tb-cpu">--</b>%</span>
+                    <span>RAM: <b id="tb-ram">--</b>%</span>
+                    <span>TEMP: <b id="tb-temp">--</b>&deg;C</span>
+                </div>
+            </div>
 
-			<!-- Layout principal -->
-			<div class="main-layout">
-				<!-- Menu lateral esquerdo -->
-				<aside class="sidebar">
-					<p class="prompt">
-						anorak@journal:~$ ls /home/anorak
-						<span class="blinker">_</span>
-					</p>
-					<nav>
-						<a
-							href="https://github.com/SirSouza"
-							target="_blank"
-							class="glitch"
-						>
-							GITHUB
-						</a>
+            <!-- Layout de 3 colunas -->
+            <div class="main-layout">
+                <!-- Sidebar esquerda -->
+                <aside class="sidebar sidebar-left">
+                    <div class="panel-box">
+                        <div class="panel-title">&#x25A6; clock</div>
+                        <div class="clock-display" id="clock">--:--:--</div>
+                        <div class="clock-date" id="clock-date">
+                            --- --/--/----
+                        </div>
+                    </div>
 
-						<a
-							href="https://steamcommunity.com/id/anorakofc/"
-							target="_blank"
-							class="glitch"
-						>
-							STEAM
-						</a>
-						<a
-							href="https://discord.gg/xzXcZBFqSd"
-							target="_blank"
-							class="glitch"
-						>
-							DISCORD
-						</a>
-						<a
-							href="https://open.spotify.com/user/anorakdmgs"
-							target="_blank"
-							class="glitch"
-						>
-							SPOTIFY
-						</a>
-						<a href="https://x.com/TheMage2k20" target="_blank" class="glitch">
-							TWITTER
-						</a>
-						<a
-							href="https://www.youtube.com/@Anorakofc"
-							target="_blank"
-							class="glitch"
-						>
-							YOUTUBE
-						</a>
-						<a href="#" class="glitch">SOBRE</a>
-					</nav>
-				</aside>
+                    <div class="panel-box">
+                        <div class="panel-title">&#x25A6; cpu usage</div>
+                        <div class="meter-label">
+                            <span>core0</span><span id="c0v">--%</span>
+                        </div>
+                        <div class="meter-bar">
+                            <div
+                                class="meter-fill"
+                                id="c0"
+                                style="width: 0%"
+                            ></div>
+                        </div>
+                        <div class="meter-label">
+                            <span>core1</span><span id="c1v">--%</span>
+                        </div>
+                        <div class="meter-bar">
+                            <div
+                                class="meter-fill"
+                                id="c1"
+                                style="width: 0%"
+                            ></div>
+                        </div>
+                        <div class="meter-label">
+                            <span>core2</span><span id="c2v">--%</span>
+                        </div>
+                        <div class="meter-bar">
+                            <div
+                                class="meter-fill"
+                                id="c2"
+                                style="width: 0%"
+                            ></div>
+                        </div>
+                        <div class="meter-label">
+                            <span>core3</span><span id="c3v">--%</span>
+                        </div>
+                        <div class="meter-bar">
+                            <div
+                                class="meter-fill"
+                                id="c3"
+                                style="width: 0%"
+                            ></div>
+                        </div>
+                        <div class="mini-graph" id="cpu-graph"></div>
+                    </div>
 
-				<!-- Área de conteúdo -->
-				<main class="content">
-					<section class="entries" id="entries-container">
-						<article class="entry">
-							<div class="prompt">anorak@journal:~$ ./welcome.sh</div>
-							<div class="prompt">
-								anorak@journal:~$ echo "Bem-vindo ao meu diário digital"
-							</div>
-							<div class="entry-date"><h2 class="glow">[2025-07-24]</h2></div>
-							<div class="entry-content">
-								<p>
-									E aí, eu Sou Anorak, ou pelo menos é assim que assino as
-									paradas por aqui. Resolvi começar esse diário digital. Não sei
-									bem por quê, mas acho que é aquele lance de querer guardar as
-									ideias, os perrengues do dia, os bugs que me fizeram suar
-									frio... e as pequenas vitórias também, claro.
-								</p>
-								<p>
-									Vai ser tipo meu cantinho pessoal no meio do caos da web. Sem
-									muita regra, sem firula. Só eu escrevendo o que der na telha.
-									Talvez ninguém nunca leia isso. Talvez eu leia e ria de mim
-									mesmo daqui uns anos. Tá valendo.
-								</p>
-								<p>
-									Mas calma aí,
-									<cite>"This aren't the droids you're looking for"</cite>
-									. A
-									<code>home</code>
-									é só o lobby. O que você procura está nos
-									<code>logs</code>
-									— aquela seção ali na direita (ou abaixo, dependendo do seu
-									dispositivo).
-								</p>
-								<p>
-									<strong>Spoiler:</strong>
-									não tem cookies aqui. Só paranoia, reflexões e bugs
-									existenciais.
-								</p>
-							</div>
-							<div class="prompt">
-								anorak@journal:~$
-								<span class="blinker">_</span>
-							</div>
-						</article>
-					</section>
-				</main>
+                    <div class="panel-box">
+                        <div class="panel-title">&#x25A6; memory</div>
+                        <div class="meter-label">
+                            <span>RAM</span><span id="ram-val">--/-- GB</span>
+                        </div>
+                        <div class="meter-bar">
+                            <div
+                                class="meter-fill"
+                                id="ram-bar"
+                                style="width: 0%"
+                            ></div>
+                        </div>
+                        <div class="meter-label">
+                            <span>SWAP</span><span id="swap-val">--/-- GB</span>
+                        </div>
+                        <div class="meter-bar">
+                            <div
+                                class="meter-fill"
+                                id="swap-bar"
+                                style="width: 0%"
+                            ></div>
+                        </div>
+                    </div>
 
-				<!-- Lista de logs lateral direita -->
-				<aside class="sidebar">
-					<p class="prompt">
-						anorak@journal:~$ ls /home/anorak/logs
-						<span class="blinker">_</span>
-					</p>
-					<h3>SYSTEM LOGS</h3>
-					<a href="index.html" class="glitch">- HOME</a>
-					<ul class="log-links" id="log-links">
-						<!-- Os links serão gerados aqui pelo JavaScript -->
-					</ul>
-				</aside>
-			</div>
+                    <div class="panel-box panel-nav">
+                        <div class="panel-title">&#x25A6; navigation</div>
+                        <nav class="nav-links">
+                            <a href="index.html" class="glitch">&gt;_ HOME</a>
+                            <a
+                                href="https://github.com/SirSouza"
+                                target="_blank"
+                                class="glitch"
+                                >&gt;_ GITHUB</a
+                            >
+                            <a
+                                href="https://steamcommunity.com/id/anorakofc/"
+                                target="_blank"
+                                class="glitch"
+                                >&gt;_ STEAM</a
+                            >
+                            <a
+                                href="https://discord.gg/xzXcZBFqSd"
+                                target="_blank"
+                                class="glitch"
+                                >&gt;_ DISCORD</a
+                            >
+                            <a
+                                href="https://open.spotify.com/user/anorakdmgs"
+                                target="_blank"
+                                class="glitch"
+                                >&gt;_ SPOTIFY</a
+                            >
+                            <a
+                                href="https://x.com/TheMage2k20"
+                                target="_blank"
+                                class="glitch"
+                                >&gt;_ TWITTER</a
+                            >
+                            <a
+                                href="https://www.youtube.com/@Anorakofc"
+                                target="_blank"
+                                class="glitch"
+                                >&gt;_ YOUTUBE</a
+                            >
+                            <a href="#" class="glitch">&gt;_ SOBRE</a>
+                        </nav>
+                    </div>
+                </aside>
 
-			<!-- Footer -->
-			<footer>
-				<div class="footer-content">
-					<button id="theme-switch">MUDAR TEMA</button>
-				</div>
-			</footer>
-		</div>
+                <!-- Área de conteúdo -->
+                <main class="content">
+                    <div class="content-topbar">
+                        <span
+                            >anorak@journal:~$
+                            <span class="blinker">_</span></span
+                        >
+                        <span id="entry-count"></span>
+                    </div>
+                    <section class="entries" id="entries-container">
+                        <!-- Entrada de boas-vindas estática -->
+                        <article class="entry">
+                            <div class="prompt">
+                                anorak@journal:~$ ./welcome.sh
+                            </div>
+                            <div class="prompt">
+                                anorak@journal:~$ echo "Bem-vindo ao meu diário
+                                digital"
+                            </div>
+                            <div class="entry-date">
+                                <h2 class="glow">[2025-07-24]</h2>
+                            </div>
+                            <div class="entry-content">
+                                <p>
+                                    E aí, eu sou Anorak, ou pelo menos é assim
+                                    que assino as paradas por aqui. Resolvi
+                                    começar esse diário digital. Não sei bem por
+                                    quê, mas acho que é aquele lance de querer
+                                    guardar as ideias, os perrengues do dia, os
+                                    bugs que me fizeram suar frio... e as
+                                    pequenas vitórias também, claro.
+                                </p>
+                                <p>
+                                    Vai ser tipo meu cantinho pessoal no meio do
+                                    caos da web. Sem muita regra, sem firula. Só
+                                    eu escrevendo o que der na telha. Talvez
+                                    ninguém nunca leia isso. Talvez eu leia e
+                                    ria de mim mesmo daqui uns anos. Tá valendo.
+                                </p>
+                                <p>
+                                    Mas calma aí,
+                                    <cite
+                                        >"This aren't the droids you're looking
+                                        for"</cite
+                                    >. A <code>home</code> é só o lobby. O que
+                                    você procura está nos <code>logs</code> —
+                                    aquela seção ali na direita (ou abaixo,
+                                    dependendo do seu dispositivo).
+                                </p>
+                                <p>
+                                    <strong>Spoiler:</strong> não tem cookies
+                                    aqui. Só paranoia, reflexões e bugs
+                                    existenciais.
+                                </p>
+                            </div>
+                            <div class="prompt">
+                                anorak@journal:~$ <span class="blinker">_</span>
+                            </div>
+                        </article>
+                    </section>
+                </main>
 
-		<script src="assets/script.js"></script>
-		<script src="assets/lightmode.js"></script>
-	</body>
+                <!-- Sidebar direita -->
+                <aside class="sidebar sidebar-right">
+                    <div class="panel-box">
+                        <div class="panel-title">&#x25A6; uptime</div>
+                        <div class="uptime-val" id="uptime">00:00:00</div>
+                    </div>
+
+                    <div class="panel-box">
+                        <div class="panel-title">&#x25A6; network</div>
+                        <div class="net-row">
+                            <span>&#x2191; UP</span
+                            ><span class="net-val" id="net-up">0.0 KB/s</span>
+                        </div>
+                        <div class="net-row">
+                            <span>&#x2193; DOWN</span
+                            ><span class="net-val" id="net-dn">0.0 KB/s</span>
+                        </div>
+                        <div class="section-sep"></div>
+                        <div class="net-row">
+                            <span>PING</span
+                            ><span class="net-val" id="ping">-- ms</span>
+                        </div>
+                        <div class="net-row">
+                            <span>IFACE</span><span class="net-val">eth0</span>
+                        </div>
+                        <div class="mini-graph" id="net-graph"></div>
+                    </div>
+
+                    <div class="panel-box">
+                        <div class="panel-title">&#x25A6; disk / btrfs</div>
+                        <div class="meter-label">
+                            <span>/ (root)</span
+                            ><span id="disk-root-val">--GB</span>
+                        </div>
+                        <div class="meter-bar">
+                            <div
+                                class="meter-fill"
+                                id="disk-root-bar"
+                                style="width: 0%"
+                            ></div>
+                        </div>
+                        <div class="meter-label">
+                            <span>/mnt/HD_2</span
+                            ><span id="disk-hd2-val">--GB</span>
+                        </div>
+                        <div class="meter-bar">
+                            <div
+                                class="meter-fill"
+                                id="disk-hd2-bar"
+                                style="width: 0%"
+                            ></div>
+                        </div>
+                        <div class="disk-fs-info">
+                            FS: btrfs &bull; snapper: ON
+                        </div>
+                    </div>
+
+                    <div class="panel-box">
+                        <div class="panel-title">&#x25A6; temperature</div>
+                        <div class="temp-val" id="temp">--&deg;C</div>
+                        <div class="meter-bar" style="margin-top: 6px">
+                            <div
+                                class="meter-fill"
+                                id="temp-bar"
+                                style="width: 0%"
+                            ></div>
+                        </div>
+                    </div>
+
+                    <div class="panel-box panel-logs">
+                        <div class="panel-title">&#x25A6; system logs</div>
+                        <ul class="log-links" id="log-links">
+                            <!-- gerado pelo script.js -->
+                        </ul>
+                    </div>
+                </aside>
+            </div>
+
+            <!-- Footer -->
+            <footer>
+                <div class="footer-content">
+                    <span class="footer-status">
+                        <span class="status-dot"></span>
+                        <span id="footer-status-msg">SYSTEM NOMINAL</span>
+                    </span>
+                    <p class="glow copy" id="copyright"></p>
+                    <button id="theme-switch">MUDAR TEMA</button>
+                </div>
+            </footer>
+        </div>
+        <!-- /os-shell -->
+
+        <script src="assets/script.js"></script>
+        <script src="assets/lightmode.js"></script>
+    </body>
 </html>
